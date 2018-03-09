@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.grocebay.grocebay.Fragments.CartFragment;
+import com.grocebay.grocebay.Fragments.ProfileFragment;
 import com.grocebay.grocebay.Fragments.CategoriesFragment;
 import com.grocebay.grocebay.Fragments.ProductsFragment;
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
             } else if (num == 1) {
                 return new ProductsFragment();
             } else {
-                return new CartFragment();
+                return new ProfileFragment();
             }
         }
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements MaterialTabListen
             } else if (position == 1) {
                 return "Products";
             } else {
-                return "Cart";
+                return "Profile";
             }
 
         }

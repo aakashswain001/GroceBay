@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.grocebay.grocebay.Fragments.ProductsFragment">
+    tools:context="com.grocebay.grocebay.CheckoutActivity">
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/checkout"
-        android:text="CHECKOUT"
+        android:text="CONFIRM CHECKOUT"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimaryDark"/>
