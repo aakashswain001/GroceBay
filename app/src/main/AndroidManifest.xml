@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CheckoutActivity"></activity>
+        <activity
+            android:name=".CheckoutActivity"
+            android:theme="@style/MyTheme"></activity>
         <activity
             android:name=".ProductActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/MyTheme" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

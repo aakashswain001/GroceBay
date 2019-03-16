@@ -92,7 +92,7 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
         }
         Intent intent = new Intent(ProductActivity.this, CheckoutActivity.class);
         intent.putExtra("productList", checkoutList);
-        intent.putExtra("type", category_id);
+        //     intent.putExtra("type", category_id);
         startActivity(intent);
     }
 

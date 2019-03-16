@@ -39,6 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         holder.name.setText(product.getName());
         holder.price.setText(product.getPrice());
+        holder.desc.setText(product.getDescription());
         holder.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, price;
+        private TextView name, price, desc;
         private Button addToCart;
         private ElegantNumberButton elegantNumberButton;
         private ImageView veg, nonveg;
@@ -79,6 +80,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             addToCart = itemView.findViewById(R.id.add_to_cart);
             veg = itemView.findViewById(R.id.veg);
             nonveg = itemView.findViewById(R.id.nonveg);
+            desc = itemView.findViewById(R.id.prod_desc);
         }
 
     }
