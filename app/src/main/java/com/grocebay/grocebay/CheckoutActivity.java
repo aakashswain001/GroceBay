@@ -81,7 +81,11 @@ public class CheckoutActivity extends AppCompatActivity {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                placeOrder();
+                //          placeOrder();
+                Intent intent = new Intent(CheckoutActivity.this, AddressActivity.class);
+                intent.putExtra("order_details", orderString);
+                intent.putExtra("price", Integer.toString(tot_price));
+                startActivity(intent);
             }
         });
     }

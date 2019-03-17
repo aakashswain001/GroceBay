@@ -13,8 +13,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddressActivity"
+            android:theme="@style/MyTheme2"></activity>
+        <activity
             android:name=".CheckoutActivity"
-            android:theme="@style/MyTheme"></activity>
+            android:theme="@style/MyTheme" />
         <activity
             android:name=".ProductActivity"
             android:parentActivityName=".MainActivity"
