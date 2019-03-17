@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.grocebay.grocebay.interfaces.AddorRemoveCallbacks;
 import com.grocebay.grocebay.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.name.setText(product.getName());
         holder.price.setText(product.getPrice());
         holder.desc.setText(product.getDescription());
+        Picasso.with(mCtx).load(product.getImage()).into(holder.prod);
         holder.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         private TextView name, price, desc;
         private Button addToCart;
         private ElegantNumberButton elegantNumberButton;
-        private ImageView veg, nonveg;
+        private ImageView veg, nonveg, prod;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             veg = itemView.findViewById(R.id.veg);
             nonveg = itemView.findViewById(R.id.nonveg);
             desc = itemView.findViewById(R.id.prod_desc);
+            prod = itemView.findViewById(R.id.prod_image);
         }
 
     }

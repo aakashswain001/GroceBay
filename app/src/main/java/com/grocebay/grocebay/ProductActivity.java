@@ -99,8 +99,8 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
     public void loadfood() {
         setVisibility(false);
         textView.setVisibility(View.GONE);
-        //String url = GET_PRODUCTS.concat("&category_id=" + category_id);
-        String url = "http://sleepygamers.xyz/grocebay/api/products.php?apicall=get&category_id=1";
+        String url = GET_PRODUCTS.concat("&category_id=" + category_id);
+        //  String url = "http://sleepygamers.xyz/grocebay/api/products.php?apicall=get&category_id=1";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

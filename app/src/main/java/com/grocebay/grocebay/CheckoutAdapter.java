@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grocebay.grocebay.model.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.ViewHo
         holder.name.setText(product.getName());
         holder.price.setText(Integer.toString(Integer.parseInt(product.getPrice()) * product.getCount()));
         holder.quantity.setText(Integer.toString(product.getCount()));
+        Picasso.with(mCtx).load(product.getImage()).into(holder.prod);
         if (product.getVegtype().equals("veg")) {
             holder.veg.setVisibility(View.VISIBLE);
         } else {
@@ -52,7 +54,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name, price, quantity;
-        private ImageView veg, nonveg;
+        private ImageView veg, nonveg, prod;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.ViewHo
             quantity = itemView.findViewById(R.id.tv_quantity);
             veg = itemView.findViewById(R.id.veg);
             nonveg = itemView.findViewById(R.id.nonveg);
+            prod = itemView.findViewById(R.id.prod_image);
         }
 
     }

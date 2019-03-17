@@ -48,7 +48,7 @@
                         android:layout_marginTop="30dp"
                         android:background="@color/colorGrapeFruitDark"
                         android:padding="5dp"
-                        android:text="Category 1"
+                        android:text="Fruits"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
@@ -78,7 +78,7 @@
                         android:layout_marginTop="30dp"
                         android:background="@color/colorFlowerDark"
                         android:padding="5dp"
-                        android:text="Category 2"
+                        android:text="Snacks"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
@@ -117,7 +117,7 @@
                         android:layout_marginTop="30dp"
                         android:background="@color/colorGrassDark"
                         android:padding="5dp"
-                        android:text="Category 3"
+                        android:text="Vegetables"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
@@ -146,7 +146,7 @@
                         android:layout_marginTop="30dp"
                         android:background="@color/colorBlueJeansDark"
                         android:padding="5dp"
-                        android:text="Category 4"
+                        android:text="Meat , Eggs"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
