@@ -1,0 +1,11 @@
+CREATE TABLE `grocebay`.`users` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `email` VARCHAR(20) NOT NULL , `password` VARCHAR(50) NOT NULL , `phone` INT(10) NOT NULL , PRIMARY KEY (`id`), UNIQUE (`email`)) ENGINE = InnoDB;
+
+ALTER TABLE `users` CHANGE `phone` `phone` VARCHAR(10) NOT NULL; 
+
+CREATE TABLE `grocebay`.`categories` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `name` VARCHAR(20) NOT NULL , `description` TEXT NOT NULL , `image` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+CREATE TABLE `grocebay`.`products` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `name` VARCHAR(20) NOT NULL , `description` VARCHAR(50) NOT NULL , `category_id` INT(10) NOT NULL , `price` INT(10) NOT NULL , `vegtype` VARCHAR(10) NOT NULL , `image` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+CREATE TABLE `grocebay`.`admins` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `username` VARCHAR(100) NOT NULL , `email` VARCHAR(100) NOT NULL , `password` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+CREATE TABLE `grocebay`.`orders` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `user_id` INT(10) NOT NULL , `order_details` VARCHAR(500) NOT NULL , `order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` INT(10) NOT NULL , `address` VARCHAR(100) NOT NULL , `status` VARCHAR(10) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
