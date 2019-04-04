@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.grocebay.grocebay.model.Product;
 import com.grocebay.grocebay.utils.MySingleton;
 import com.grocebay.grocebay.utils.SharedPrefManager;
 import com.grocebay.grocebay.utils.URLs;
@@ -25,6 +26,7 @@ import com.grocebay.grocebay.utils.URLs;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,6 +127,8 @@ public class AddressActivity extends AppCompatActivity {
                             //if no error in response
                             if (!obj.getBoolean("error")) {
                                 //   finish();
+                                SharedPrefManager.getInstance(getApplicationContext()).setCheckoutCount(0);
+                                SharedPrefManager.getInstance(getApplicationContext()).saveArrayList(new ArrayList<Product>());
                                 Intent newIntent = new Intent(AddressActivity.this, MainActivity.class);
                                 newIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -43,9 +43,9 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         ArrayList<Product> productList;
-        productList = (ArrayList<Product>) getIntent().getSerializableExtra("productList");
+        //    productList = (ArrayList<Product>) getIntent().getSerializableExtra("productList");
         //    type = getIntent().getStringExtra("type");
-
+        productList = SharedPrefManager.getInstance(this).getArrayList();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -150,5 +150,11 @@ public class CheckoutActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -26,11 +26,13 @@ import com.grocebay.grocebay.interfaces.AddorRemoveCallbacks;
 import com.grocebay.grocebay.model.Product;
 import com.grocebay.grocebay.utils.Converter;
 import com.grocebay.grocebay.utils.MySingleton;
+import com.grocebay.grocebay.utils.SharedPrefManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
 
     public ProductAdapter productAdapter;
     List<Product> productList;
+    ArrayList<Product> checkoutList;
     RecyclerView recyclerView;
     String category_id;
     ProgressBar pBar;
@@ -75,24 +78,50 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
                 intentCheckout();
             }
         });
+        checkoutList = new ArrayList<>();
+        //set cart count
+        cart_count = SharedPrefManager.getInstance(this).getCheckoutCount();
+        mCounterFab.setCount(cart_count);
+        invalidateOptionsMenu();
+        //cart count end
         loadfood();
     }
 
     private void intentCheckout() {
-        ArrayList<Product> checkoutList = new ArrayList<>();
+        if (SharedPrefManager.getInstance(this).getCheckoutCount() > 0) {
+            ArrayList<Product> someList = SharedPrefManager.getInstance(this).getArrayList();
+            for (Product m : productList) {
+                for (Product pm : someList) {
+                    if (pm.getId() == m.getId()) {
+                        m.setCount(m.getCount() + pm.getCount());
+                        someList.remove(pm);
+                    }
+
+                }
+            }
+            for (Product pm : someList) {
+                if (pm.getCount() > 0) {
+                    checkoutList.add(pm);
+                }
+            }
+        }
         for (Product m : productList) {
             if (m.getCount() > 0) {
                 checkoutList.add(m);
             }
         }
+
         if (checkoutList.isEmpty()) {
             Snackbar.make(findViewById(R.id.parentlayout), "No item in cart !!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
         }
+        SharedPrefManager.getInstance(this).saveArrayList(checkoutList);
+        SharedPrefManager.getInstance(this).setCheckoutCount(checkoutList.size());
         Intent intent = new Intent(ProductActivity.this, CheckoutActivity.class);
-        intent.putExtra("productList", checkoutList);
+        // intent.putExtra("productList", checkoutList);
         //     intent.putExtra("type", category_id);
+        finish();
         startActivity(intent);
     }
 
@@ -125,6 +154,7 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
                     if (productList.isEmpty()) {
                         textView.setVisibility(View.VISIBLE);
                     }
+
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -178,11 +208,13 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
 
     @Override
     public void onAddProduct(int n) {
-        cart_count = 0;
+     /*   cart_count = 0;
         for (Product product :
                 productList) {
             cart_count += product.getCount();
         }
+       */
+        cart_count++;
         mCounterFab.setCount(cart_count);
         invalidateOptionsMenu();
         Snackbar.make(findViewById(R.id.parentlayout), "Added to cart !!", Snackbar.LENGTH_LONG)
@@ -193,15 +225,34 @@ public class ProductActivity extends AppCompatActivity implements AddorRemoveCal
 
     @Override
     public void onRemoveProduct(int n) {
-        cart_count = 0;
+      /*  cart_count = 0;
         for (Product product :
                 productList) {
             cart_count += product.getCount();
         }
+       */
+        cart_count--;
         mCounterFab.setCount(cart_count);
         invalidateOptionsMenu();
         Snackbar.make(findViewById(R.id.parentlayout), "Removed from cart !!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        cart_count = SharedPrefManager.getInstance(this).getCheckoutCount();
+        mCounterFab.setCount(cart_count);
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cart_count = SharedPrefManager.getInstance(this).getCheckoutCount();
+        mCounterFab.setCount(cart_count);
+        invalidateOptionsMenu();
 
     }
 }
