@@ -124,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //hiding the progressbar after completion
                         progressBar.setVisibility(View.GONE);
                         try {
+                            Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
 
